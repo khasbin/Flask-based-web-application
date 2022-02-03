@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Notes
+{% endblock title %}
+
+{% block content %}
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+            {% for note in user.notes %}
+            <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0 mb-1">
+                <p class="leading-relaxed text-base">{{note.data}}
+                </p>
+                <button class ="p-2" type = "button" onclick='DeleteNote({{note.id}})'>
+                    <span class = "text-slate-800" aria-hidden="true">&#215;</span>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        <br />
+        <hr />
+        <form class="form flex justify-center mt-3" method  = "POST">
+            <div class="flex items-center border-b border-teal-500 py-2">
+              <input class="appearance-none bg-transparent border-none w-full text-slate-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" name = "note" id = "note" placeholder="Enter your notes">
+              <button class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="submit">
+                Add note
+              </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock content %}
